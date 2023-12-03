@@ -1,0 +1,4 @@
+enum ButtoNIconPosition{
+ Left,
+  Right
+}
