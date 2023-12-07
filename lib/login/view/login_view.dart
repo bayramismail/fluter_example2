@@ -4,6 +4,8 @@ import 'package:fluter_example2/login/service/login_service.dart';
 import 'package:fluter_example2/themes/buttons/button_enum.dart';
 import 'package:fluter_example2/themes/buttons/theme_button.dart';
 import 'package:fluter_example2/themes/texts/theme_text.dart';
+import 'package:fluter_example2/validators/email_validation.dart';
+import 'package:fluter_example2/validators/my_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../lotties/auth/login_lottie.dart';
@@ -26,6 +28,7 @@ class _LoginViewState extends State<LoginView> {
       body: LoginBody(),
     );
   }
+
 
   LoginBody() {
     return Center(

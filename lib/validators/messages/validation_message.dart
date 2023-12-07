@@ -1,0 +1,1 @@
+const String EmailValidationMessage="Enter a valid email address";
