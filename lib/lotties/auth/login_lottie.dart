@@ -10,6 +10,6 @@ class UserLottie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Lottie.asset(Assets.lottiesRestaurantLogo.replaceAll("assets/", ""), height: height, width: width));
+        child: Lottie.asset(Assets.lottiesRestaurantLogo, height: height, width: width));
   }
 }

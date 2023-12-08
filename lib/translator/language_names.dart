@@ -1,0 +1,4 @@
+enum LanguageEnums{
+ Tr,
+ Eng
+}

@@ -17,8 +17,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   LoginBloc(this._logginService)
       : super(LoginInitial()) {
+
     on<PostLoginPressed>((event, emit) async {
       print(formKey.currentState!.validate());
+      emit(LoginState().copyWith(isPostPack: true));
       await _logginService.login(LoginModel("eve.holt@reqres.in", "pistol"));
     });
   }

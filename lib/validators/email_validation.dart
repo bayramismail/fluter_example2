@@ -10,5 +10,8 @@ final emailValidation = ValidationModel((value) {
       return EmailValidationMessage;
     }
   }
+  else{
+    return RequiredMessage;
+  }
   return null;
 });

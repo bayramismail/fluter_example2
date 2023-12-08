@@ -29,23 +29,20 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-
-  LoginBody() {
+  Widget LoginBody() {
     return Center(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                UserLottie(),
-                ThemeTitleText(
-                  text: "Welcome To The Restaurant",
-                ),
-                TextFormFieldLogin(),
-              ],
-            ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              const UserLottie(),
+              ThemeTitleText(
+                text: "Welcome To The Restaurant",
+              ),
+              TextFormFieldLogin(),
+            ],
           ),
         ),
       ),

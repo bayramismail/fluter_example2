@@ -11,17 +11,21 @@ class TextFormFieldLogin extends StatelessWidget {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Form(
+            autovalidateMode: ( state.isPostPack?AutovalidateMode.always :AutovalidateMode.disabled),
             key: context.read<LoginBloc>().formKey,
             child: Column(
               children: [
                 ThemeTextFormField(
+                    key:Key("email") ,
                     textEditingController:
                         context.read<LoginBloc>().emailController,
                     text: "Email",
                     validator: MyValidation.email.validation),
                 ThemeTextFormField(
+                  key:Key("password") ,
                   textEditingController:
                       context.read<LoginBloc>().passwordController,
+                  validator:MyValidation.password.validation,
                   text: "Password",
                 ),
                 Row(
