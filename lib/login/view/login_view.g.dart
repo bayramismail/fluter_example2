@@ -5,27 +5,33 @@ class TextFormFieldLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var myNotifier = context.watch<LanguageNotifier>();
     return BlocProvider(
       create: (context) =>
           LoginBloc(LoginService(VexanaNetworkManager<LoginModel>())),
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Form(
-            autovalidateMode: ( state.isPostPack?AutovalidateMode.always :AutovalidateMode.disabled),
+            autovalidateMode: (state.isPostPack
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled),
             key: context.read<LoginBloc>().formKey,
             child: Column(
               children: [
                 ThemeTextFormField(
-                    key:Key("email") ,
+                    key: Key("email"),
                     textEditingController:
                         context.read<LoginBloc>().emailController,
-                    text: "Email",
+                    text: myNotifier
+                        .getPageModelByPageNameAndId(
+                            "login", "form_field_email")
+                        .text,
                     validator: MyValidation.email.validation),
                 ThemeTextFormField(
-                  key:Key("password") ,
+                  key: Key("password"),
                   textEditingController:
                       context.read<LoginBloc>().passwordController,
-                  validator:MyValidation.password.validation,
+                  validator: MyValidation.password.validation,
                   text: "Password",
                 ),
                 Row(
