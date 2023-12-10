@@ -10,6 +10,7 @@ void main() {
     providers: [
       ChangeNotifierProvider(
         create: (context) => LanguageNotifier(),
+        lazy: true,
       ),
     ],
     child: MyApp(),
@@ -22,18 +23,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  // late LanguageNotifier langNotifier;
-  //
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   // Access context and initialize langNotifier here
-  //   langNotifier = context.watch<LanguageNotifier>();
-  // }
-
   @override
   Widget build(BuildContext context) {
+    var myNotifier = Provider.of<LanguageNotifier>(context, listen: false);
     return MaterialApp(
-        title: "", theme: ThemeNotifer().currentTheme, home: LoginView());
+        title: myNotifier.currentLanguageList.length.toString() + "",
+        theme: ThemeNotifer().currentTheme,
+        home: LoginView());
   }
 }

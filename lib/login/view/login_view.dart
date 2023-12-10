@@ -4,10 +4,12 @@ import 'package:fluter_example2/login/service/login_service.dart';
 import 'package:fluter_example2/themes/buttons/button_enum.dart';
 import 'package:fluter_example2/themes/buttons/theme_button.dart';
 import 'package:fluter_example2/themes/texts/theme_text.dart';
-import 'package:fluter_example2/validators/email_validation.dart';
+import 'package:fluter_example2/translator/language_names.dart';
+import 'package:fluter_example2/translator/language_notifier.dart';
 import 'package:fluter_example2/validators/my_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import '../../lotties/auth/login_lottie.dart';
 import '../../service/vexana_network_manager.dart';
 import '../../themes/forms/theme_form_field.dart';
@@ -24,12 +26,13 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    var myNotifier = context.watch<LanguageNotifier>();
     return Scaffold(
-      body: LoginBody(),
+      body: LoginBody(myNotifier),
     );
   }
 
-  Widget LoginBody() {
+  Widget LoginBody(LanguageNotifier notifier) {
     return Center(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -38,8 +41,15 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             children: [
               const UserLottie(),
+              ElevatedButton(
+                  onPressed: () {
+                    notifier.setLanguage(LanguageEnums.Eng);
+                  },
+                  child: Text(notifier.currentLanguageList.length.toString())),
               ThemeTitleText(
-                text: "Welcome To The Restaurant",
+                text: notifier
+                    .getPageModelByPageNameAndId("login", "text_title")
+                    .text,
               ),
               TextFormFieldLogin(),
             ],
