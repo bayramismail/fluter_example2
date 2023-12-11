@@ -6,16 +6,19 @@ import 'package:flutter/material.dart';
 import 'models/translate_model.dart';
 
 class LanguageNotifier extends ChangeNotifier {
-  late List<TranslateModel> _currentLanguageList = [];
+  late LanguageEnums lang;
+  late List<TranslateModel<List<TranslatePageModel>>> _currentLanguageList = [];
 
-  List<TranslateModel> get currentLanguageList {
+  List<TranslateModel<List<TranslatePageModel>>> get currentLanguageList {
     return _currentLanguageList;
   }
 
   LanguageNotifier() {
+    lang=LanguageEnums.Tr;
     _currentLanguageList = Tr;
   }
   void setLanguage(LanguageEnums languageEnum) {
+    lang=languageEnum;
     switch (languageEnum) {
       case LanguageEnums.Tr:
         _currentLanguageList = Tr;
@@ -27,7 +30,7 @@ class LanguageNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  TranslateModel getByPageName(String pageName) {
+  TranslateModel<List<TranslatePageModel>> getByPageName(String pageName) {
     return currentLanguageList
         .firstWhere((element) => element.pageName == pageName);
   }

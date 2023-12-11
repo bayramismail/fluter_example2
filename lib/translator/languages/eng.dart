@@ -2,7 +2,7 @@ import 'package:fluter_example2/translator/models/translate_model.dart';
 import 'package:fluter_example2/translator/models/translate_page_model.dart';
 
 
-List<TranslateModel> Eng = [
+List<TranslateModel<List<TranslatePageModel>>> Eng = [
 
   TranslateModel(pageName: "login", translates: [
     TranslatePageModel(id: "btn_login", text: "Login"),

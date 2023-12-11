@@ -1,11 +1,11 @@
-part of './login_view.dart';
+part of 'login_view.dart';
 
-class TextFormFieldLogin extends StatelessWidget {
+class TextFormFieldLogin extends StatelessWidget with LoginMixin {
   TextFormFieldLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var myNotifier = context.watch<LanguageNotifier>();
+    var notifier = context.watch<LanguageNotifier>();
     return BlocProvider(
       create: (context) =>
           LoginBloc(LoginService(VexanaNetworkManager<LoginModel>())),
@@ -19,20 +19,23 @@ class TextFormFieldLogin extends StatelessWidget {
             child: Column(
               children: [
                 ThemeTextFormField(
-                    key: Key("email"),
+                    key: Key(translateField().translates.formFieldEmail),
                     textEditingController:
                         context.read<LoginBloc>().emailController,
-                    text: myNotifier
-                        .getPageModelByPageNameAndId(
-                            "login", "form_field_email")
+                    text: notifier
+                        .getPageModelByPageNameAndId(translateField().pageName,
+                            translateField().translates.formFieldEmail)
                         .text,
                     validator: MyValidation.email.validation),
                 ThemeTextFormField(
-                  key: Key("password"),
+                  key: Key(translateField().translates.formFieldPassword),
                   textEditingController:
                       context.read<LoginBloc>().passwordController,
                   validator: MyValidation.password.validation,
-                  text: "Password",
+                  text: notifier
+                      .getPageModelByPageNameAndId(translateField().pageName,
+                          translateField().translates.formFieldPassword)
+                      .text,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -41,16 +44,23 @@ class TextFormFieldLogin extends StatelessWidget {
                       onChanged: (value) {},
                       value: true,
                     ),
-                    Text("Rember me"),
-                    Expanded(flex: 1, child: Text("")),
+                    Text(notifier
+                        .getPageModelByPageNameAndId(translateField().pageName,
+                            translateField().translates.formFieldCheckbox)
+                        .text),
+                    const Expanded(flex: 1, child: Text("")),
                     ThemeElevatedButton(
                       onPressed: () {
                         context.read<LoginBloc>().add(PostLoginPressed());
                       },
-                      text: "Login",
-                      icon: Icon(Icons.login),
+                      text: notifier
+                          .getPageModelByPageNameAndId(
+                              translateField().pageName,
+                              translateField().translates.btnLogin)
+                          .text,
+                      icon: const Icon(Icons.login),
                       iconPositon: ButtoNIconPosition.Left,
-                      width: 120,
+
                     ),
                   ],
                 )

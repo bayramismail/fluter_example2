@@ -12,7 +12,7 @@ class ThemeElevatedButton extends StatelessWidget {
       {super.key,
       required this.onPressed,
       required this.text,
-      this.width = 300,
+      this.width ,
       this.height = 40,
       this.icon,
       this.iconPositon});

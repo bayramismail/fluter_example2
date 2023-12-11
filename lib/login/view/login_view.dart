@@ -1,4 +1,5 @@
 import 'package:fluter_example2/login/bloc/login_bloc.dart';
+import 'package:fluter_example2/login/mixin/login_mixin.dart';
 import 'package:fluter_example2/login/model/login_model.dart';
 import 'package:fluter_example2/login/service/login_service.dart';
 import 'package:fluter_example2/themes/buttons/button_enum.dart';
@@ -14,7 +15,7 @@ import '../../lotties/auth/login_lottie.dart';
 import '../../service/vexana_network_manager.dart';
 import '../../themes/forms/theme_form_field.dart';
 
-part './login_view.g.dart';
+part 'login_view.g.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -23,7 +24,7 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends State<LoginView> with LoginMixin {
   @override
   Widget build(BuildContext context) {
     var myNotifier = context.watch<LanguageNotifier>();
@@ -32,8 +33,7 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget LoginBody(LanguageNotifier notifier) {
-    return Center(
+  Widget LoginBody(LanguageNotifier notifier) => Center(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
@@ -43,12 +43,13 @@ class _LoginViewState extends State<LoginView> {
               const UserLottie(),
               ElevatedButton(
                   onPressed: () {
-                    notifier.setLanguage(LanguageEnums.Eng);
+                    notifier.setLanguage( notifier.lang==LanguageEnums.Tr?LanguageEnums.Eng:LanguageEnums.Tr);
                   },
-                  child: Text(notifier.currentLanguageList.length.toString())),
+                  child: Text(notifier.lang.toString())),
               ThemeTitleText(
                 text: notifier
-                    .getPageModelByPageNameAndId("login", "text_title")
+                    .getPageModelByPageNameAndId(translateField().pageName,
+                        translateField().translates.textTitle)
                     .text,
               ),
               TextFormFieldLogin(),
@@ -57,5 +58,4 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     );
-  }
 }
