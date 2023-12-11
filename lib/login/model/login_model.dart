@@ -12,11 +12,12 @@ class LoginModel extends INetworkModel<LoginModel> {
 
   @override
   LoginModel fromJson(Map<String, dynamic> json) {
-    throw UnimplementedError();
+    return _$LoginModelFromJson(json);
   }
 
   @override
   Map<String, dynamic>? toJson() {
     return _$LoginModelToJson(this);
   }
+
 }

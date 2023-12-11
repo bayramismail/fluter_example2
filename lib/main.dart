@@ -1,4 +1,5 @@
 import 'package:fluter_example2/login/view/login_view.dart';
+import 'package:fluter_example2/navigation/app_router.dart';
 import 'package:fluter_example2/themes/theme_notifer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,12 +24,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  static final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     var myNotifier = Provider.of<LanguageNotifier>(context, listen: false);
-    return MaterialApp(
-        title: myNotifier.currentLanguageList.length.toString() + "",
-        theme: ThemeNotifer().currentTheme,
-        home: LoginView());
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
+      title: "${myNotifier.lang}",
+      theme: ThemeNotifer().currentTheme,
+    );
   }
 }

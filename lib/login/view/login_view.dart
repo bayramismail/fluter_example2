@@ -1,3 +1,5 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:fluter_example2/login/bloc/login_bloc.dart';
 import 'package:fluter_example2/login/mixin/login_mixin.dart';
 import 'package:fluter_example2/login/model/login_model.dart';
@@ -15,8 +17,7 @@ import '../../lotties/auth/login_lottie.dart';
 import '../../service/vexana_network_manager.dart';
 import '../../themes/forms/theme_form_field.dart';
 
-part 'login_view.g.dart';
-
+@RoutePage()
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -29,6 +30,9 @@ class _LoginViewState extends State<LoginView> with LoginMixin {
   Widget build(BuildContext context) {
     var myNotifier = context.watch<LanguageNotifier>();
     return Scaffold(
+      appBar: AppBar(leading: IconButton(onPressed: () {
+        context.router.back();
+      }, icon: Icon(Icons.arrow_back_ios)),),
       body: LoginBody(myNotifier),
     );
   }
@@ -58,4 +62,77 @@ class _LoginViewState extends State<LoginView> with LoginMixin {
         ),
       ),
     );
+}
+
+class TextFormFieldLogin extends StatelessWidget with LoginMixin {
+  TextFormFieldLogin({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var notifier = context.watch<LanguageNotifier>();
+    return BlocProvider(
+      create: (context) =>
+          LoginBloc(LoginService(VexanaNetworkManager<LoginModel>())),
+      child: BlocBuilder<LoginBloc, LoginState>(
+        builder: (context, state) {
+          return Form(
+            autovalidateMode: (state.isPostPack
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled),
+            key: context.read<LoginBloc>().formKey,
+            child: Column(
+              children: [
+                ThemeTextFormField(
+                    key: Key(translateField().translates.formFieldEmail),
+                    textEditingController:
+                    context.read<LoginBloc>().emailController,
+                    text: notifier
+                        .getPageModelByPageNameAndId(translateField().pageName,
+                        translateField().translates.formFieldEmail)
+                        .text,
+                    validator: MyValidation.email.validation),
+                ThemeTextFormField(
+                  key: Key(translateField().translates.formFieldPassword),
+                  textEditingController:
+                  context.read<LoginBloc>().passwordController,
+                  validator: MyValidation.password.validation,
+                  text: notifier
+                      .getPageModelByPageNameAndId(translateField().pageName,
+                      translateField().translates.formFieldPassword)
+                      .text,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Checkbox(
+                      onChanged: (value) {},
+                      value: true,
+                    ),
+                    Text(notifier
+                        .getPageModelByPageNameAndId(translateField().pageName,
+                        translateField().translates.formFieldCheckbox)
+                        .text),
+                    const Expanded(flex: 1, child: Text("")),
+                    ThemeElevatedButton(
+                      onPressed: () {
+                        context.read<LoginBloc>().add(PostLoginPressed());
+                      },
+                      text: notifier
+                          .getPageModelByPageNameAndId(
+                          translateField().pageName,
+                          translateField().translates.btnLogin)
+                          .text,
+                      icon: const Icon(Icons.login),
+                      iconPositon: ButtoNIconPosition.Left,
+
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

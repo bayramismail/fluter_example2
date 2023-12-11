@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vexana/vexana.dart';
 
-part 'token_model.g.dart';
 
 @JsonSerializable()
 class TokenModel extends INetworkModel<TokenModel> {
@@ -19,3 +18,11 @@ class TokenModel extends INetworkModel<TokenModel> {
     return _$TokenModelToJson(this);
   }
 }
+TokenModel _$TokenModelFromJson(Map<String, dynamic> json) => TokenModel(
+  token: json['token'] as String?,
+);
+
+Map<String, dynamic> _$TokenModelToJson(TokenModel instance) =>
+    <String, dynamic>{
+      'token': instance.token,
+    };
