@@ -14,17 +14,6 @@ final class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.router.push(const LoginRoute());
-              },
-              icon: Icon(Icons.login_outlined))
-        ],
-      ),
-      body: Text("Home"),
-    );
+    return Text("Home");
   }
 }

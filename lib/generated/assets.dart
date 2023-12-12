@@ -4,6 +4,7 @@ class Assets {
 
   static const String lottiesLogin = 'assets/lotties/login.json';
   static const String lottiesRestaurantLogo = 'assets/lotties/restaurant_logo.json';
+  static const String lottiesSweets = 'assets/lotties/sweets.json';
   static const String lottiesUser = 'assets/lotties/user.json';
 
 }

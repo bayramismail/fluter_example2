@@ -11,5 +11,12 @@ List<TranslateModel<List<TranslatePageModel>>> Tr = [
     TranslatePageModel(id: "form_field_email", text: "E-Posta"),
     TranslatePageModel(id: "form_field_password", text: "Şifre"),
     TranslatePageModel(id: "form_field_checkbox", text: "Beni Hatırla"),
-  ])
+  ]),
+  TranslateModel(pageName: "dashboard_main", translates: [
+    TranslatePageModel(id: "home", text: "Anasayfa"),
+    TranslatePageModel(id: "home_detail", text: "Anasayfa Detay"),
+  ]),
+  TranslateModel(pageName: "router", translates: [
+    TranslatePageModel(id: "home", text: "Anasayfa"),
+  ]),
 ];
