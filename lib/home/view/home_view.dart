@@ -14,6 +14,31 @@ final class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Text("Home");
+    return Column(
+      children: [
+        Container(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+
+            itemExtent: 300,
+            itemBuilder: (context, index) {
+              return Card(
+                child: Row(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [Text("Deneme")],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -1,12 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:fluter_example2/dashboard/mixin/dashboard_mixin.dart';
 import 'package:fluter_example2/navigation/app_router.dart';
 import 'package:fluter_example2/translator/language_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 @RoutePage()
-class DashboardMainView extends StatelessWidget {
+class DashboardMainView extends StatelessWidget with DashboardMixin {
   const DashboardMainView({super.key});
 
   @override
@@ -47,20 +48,28 @@ class DashboardMainView extends StatelessWidget {
                 items: [
                   TabItem(
                       icon: Icons.home,
-                      title: notifier
-                          .getPageModelByPageNameAndId("dashboard_main", "home")
-                          .text),
+                      title: notiferText(
+                          notifier, translateField().translates.home)),
                   TabItem(
                       icon: Icons.local_drink_outlined,
-                      title: notifier
-                          .getPageModelByPageNameAndId(
-                              "dashboard_main", "home_detail")
-                          .text),
-                  TabItem(icon: Icons.restaurant, title: 'Yiyecekler'),
+                      title: notiferText(
+                          notifier, translateField().translates.beverage)),
                   TabItem(
-                      icon: Icons.restaurant_menu_outlined, title: 'Tatlılar'),
+                      icon: Icons.restaurant,
+                      title: notiferText(
+                          notifier, translateField().translates.food)),
+                  TabItem(
+                      icon: Icons.restaurant_menu_outlined,
+                      title: notiferText(
+                          notifier, translateField().translates.sweet)),
                 ]));
       },
     );
+  }
+
+  String notiferText(LanguageNotifier notifier, String translateId) {
+    return notifier
+        .getPageModelByPageNameAndId(translateField().pageName, translateId)
+        .text;
   }
 }

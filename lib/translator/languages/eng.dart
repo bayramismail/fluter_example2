@@ -1,9 +1,7 @@
 import 'package:fluter_example2/translator/models/translate_model.dart';
 import 'package:fluter_example2/translator/models/translate_page_model.dart';
 
-
 List<TranslateModel<List<TranslatePageModel>>> Eng = [
-
   TranslateModel(pageName: "login", translates: [
     TranslatePageModel(id: "btn_login", text: "Login"),
     TranslatePageModel(id: "text_title", text: "Welcome To The Restaurant"),
@@ -13,7 +11,9 @@ List<TranslateModel<List<TranslatePageModel>>> Eng = [
   ]),
   TranslateModel(pageName: "dashboard_main", translates: [
     TranslatePageModel(id: "home", text: "Home"),
-    TranslatePageModel(id: "home_detail", text: "Home Detail"),
+    TranslatePageModel(id: "beverage", text: "Beverage"),
+    TranslatePageModel(id: "food", text: "Food"),
+    TranslatePageModel(id: "sweet", text: "Sweet"),
   ]),
   TranslateModel(pageName: "router", translates: [
     TranslatePageModel(id: "home", text: "Home"),
