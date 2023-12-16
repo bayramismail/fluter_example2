@@ -13,6 +13,10 @@ void main() {
         create: (context) => LanguageNotifier(),
         lazy: true,
       ),
+      ChangeNotifierProvider(
+        create: (context) => ThemeNotifer(),
+        lazy: true,
+      ),
     ],
     child: MyApp(),
   ));
@@ -28,10 +32,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var myNotifier = Provider.of<LanguageNotifier>(context, listen: false);
+    var themeNotifier = Provider.of<ThemeNotifer>(context);
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
       title: "${myNotifier.lang}",
-      theme: ThemeNotifer().currentTheme,
+      theme: themeNotifier.currentTheme,
     );
   }
 }

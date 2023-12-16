@@ -5,6 +5,7 @@ class DashboardTranslateId {
   String beverage = "beverage";
   String food = "food";
   String sweet = "sweet";
+  String myOrders = "my_orders";
 }
 
 mixin DashboardMixin {

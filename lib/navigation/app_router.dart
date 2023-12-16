@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fluter_example2/Dashboard/dashboard_main_view.dart';
+import 'package:fluter_example2/food/view/food_view.dart';
 import 'package:fluter_example2/home/view/home_detail_view.dart';
 import 'package:fluter_example2/home/view/home_view.dart';
 import 'package:fluter_example2/login/view/login_view.dart';
@@ -30,6 +31,13 @@ final class AppRouter extends _$AppRouter with RouterMixin {
           AutoRoute(
             page: HomeDetailRoute.page,
             title: (context, data) => "Home Detail",
+          ),
+          AutoRoute(
+            page: FoodRoute.page,
+            title: (context, data) => notifier
+                .getPageModelByPageNameAndId(translateField().pageName,
+                translateField().translates.food)
+                .text,
           )
         ]),
         AutoRoute(page: LoginRoute.page),

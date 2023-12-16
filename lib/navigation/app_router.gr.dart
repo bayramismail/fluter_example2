@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const DashboardMainView(),
       );
     },
+    FoodRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const FoodView(),
+      );
+    },
     HomeDetailRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -52,6 +58,20 @@ class DashboardMainRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'DashboardMainRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [FoodView]
+class FoodRoute extends PageRouteInfo<void> {
+  const FoodRoute({List<PageRouteInfo>? children})
+      : super(
+          FoodRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FoodRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
