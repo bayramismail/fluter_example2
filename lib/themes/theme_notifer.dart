@@ -1,7 +1,6 @@
 import 'package:fluter_example2/themes/dark_theme.dart';
+import 'package:fluter_example2/themes/ligh_theme.dart';
 import 'package:flutter/material.dart';
-
-import 'ligh_theme.dart';
 
 class ThemeNotifer extends ChangeNotifier {
   bool isLighTheme = true;
@@ -12,11 +11,9 @@ class ThemeNotifer extends ChangeNotifier {
   }
 
   ThemeData get currentTheme {
-    print(isLighTheme.toString());
-    if(isLighTheme){
-      return ThemeData.dark();
+    if (isLighTheme) {
+      return DarkTheme().theme;
     }
-    return ThemeData.light();
+    return LighTheme().theme;
   }
-
 }

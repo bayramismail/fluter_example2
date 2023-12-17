@@ -3,14 +3,14 @@ import 'package:fluter_example2/themes/buttons/theme_button.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class FoodView extends StatefulWidget {
-  const FoodView({super.key});
-
+class ProductView extends StatefulWidget {
+  const ProductView({super.key, required this.categoryId});
+  final int categoryId;
   @override
-  State<FoodView> createState() => _FoodViewState();
+  State<ProductView> createState() => _ProductViewState();
 }
 
-class _FoodViewState extends State<FoodView> {
+class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

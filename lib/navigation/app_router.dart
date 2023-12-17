@@ -1,12 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fluter_example2/Dashboard/dashboard_main_view.dart';
-import 'package:fluter_example2/food/view/food_view.dart';
-import 'package:fluter_example2/home/view/home_detail_view.dart';
 import 'package:fluter_example2/home/view/home_view.dart';
 import 'package:fluter_example2/login/view/login_view.dart';
+import 'package:fluter_example2/my_order/view/my_order_view.dart';
 import 'package:fluter_example2/navigation/mixin/router_mixin.dart';
+import 'package:fluter_example2/product/view/product_view.dart';
 import 'package:fluter_example2/translator/language_notifier.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 part 'app_router.gr.dart';
@@ -29,14 +30,17 @@ final class AppRouter extends _$AppRouter with RouterMixin {
             },
           ),
           AutoRoute(
-            page: HomeDetailRoute.page,
-            title: (context, data) => "Home Detail",
-          ),
-          AutoRoute(
-            page: FoodRoute.page,
+            page: MyOrderRoute.page,
             title: (context, data) => notifier
                 .getPageModelByPageNameAndId(translateField().pageName,
-                translateField().translates.food)
+                    translateField().translates.myOrder)
+                .text,
+          ),
+          AutoRoute(
+            page: ProductRoute.page,
+            title: (context, data) => notifier
+                .getPageModelByPageNameAndId(
+                    translateField().pageName, translateField().translates.product)
                 .text,
           )
         ]),

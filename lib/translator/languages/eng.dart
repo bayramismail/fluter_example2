@@ -18,6 +18,7 @@ List<TranslateModel<List<TranslatePageModel>>> Eng = [
   ]),
   TranslateModel(pageName: "router", translates: [
     TranslatePageModel(id: "home", text: "Home"),
-    TranslatePageModel(id: "food", text: "Food"),
+    TranslatePageModel(id: "product", text: "Products"),
+    TranslatePageModel(id: "my_order", text: "My Orders"),
   ]),
 ];

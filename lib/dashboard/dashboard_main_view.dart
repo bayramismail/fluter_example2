@@ -16,7 +16,13 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
     var notifier = context.watch<LanguageNotifier>();
     var themeNotifier = context.watch<ThemeNotifer>();
     return AutoTabsRouter.tabBar(
-      routes: [HomeRoute(), HomeDetailRoute(),FoodRoute()],
+      routes: [
+        HomeRoute(),
+        ProductRoute(categoryId: 1),
+        ProductRoute(categoryId: 2),
+        ProductRoute(categoryId: 3),
+        MyOrderRoute()
+      ],
       builder: (context, child, controller) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
@@ -26,7 +32,6 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               actions: [
-
                 IconButton(
                     onPressed: () {
                       themeNotifier.changeTheme();
@@ -47,11 +52,14 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
             ),
             body: child,
             bottomNavigationBar: ConvexAppBar(
+                height: 70,
+                curveSize: 105,
+                color: Theme.of(context).iconTheme.color,
                 backgroundColor:
-                    themeNotifier.currentTheme.scaffoldBackgroundColor,
-                color: themeNotifier.currentTheme.iconTheme.color,
-                activeColor: themeNotifier.currentTheme.colorScheme.primary,
-                elevation: 10,
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                elevation: Theme.of(context).appBarTheme.elevation,
+                activeColor: Theme.of(context).iconTheme.color,
+                shadowColor: Theme.of(context).appBarTheme.shadowColor,
                 onTap: tabsRouter.setActiveIndex,
                 items: [
                   TabItem(
