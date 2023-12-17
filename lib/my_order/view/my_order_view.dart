@@ -16,7 +16,7 @@ class _MyOrderViewState extends State<MyOrderView> {
       return   Card(
         child: Column(
           children: [
-            Text("Data"),
+            Text("Data"+index.toString()),
             Divider(),
             Container(
               height: 100,

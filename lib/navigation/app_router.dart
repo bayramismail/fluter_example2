@@ -1,11 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fluter_example2/Dashboard/dashboard_main_view.dart';
+import 'package:fluter_example2/dashboard/dasboard_intial_view.dart';
+import 'package:fluter_example2/floor/view/floor_view.dart';
 import 'package:fluter_example2/home/view/home_view.dart';
 import 'package:fluter_example2/login/view/login_view.dart';
 import 'package:fluter_example2/my_order/view/my_order_view.dart';
 import 'package:fluter_example2/navigation/mixin/router_mixin.dart';
 import 'package:fluter_example2/product/view/product_view.dart';
+import 'package:fluter_example2/table/view/table_view.dart';
 import 'package:fluter_example2/translator/language_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +21,7 @@ final class AppRouter extends _$AppRouter with RouterMixin {
   var notifier = LanguageNotifier();
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: DashboardMainRoute.page, initial: true, children: [
+        AutoRoute(page: DashboardMainRoute.page,children: [
           AutoRoute(
             page: HomeRoute.page,
             title: (context, data) {
@@ -39,11 +42,33 @@ final class AppRouter extends _$AppRouter with RouterMixin {
           AutoRoute(
             page: ProductRoute.page,
             title: (context, data) => notifier
-                .getPageModelByPageNameAndId(
-                    translateField().pageName, translateField().translates.product)
+                .getPageModelByPageNameAndId(translateField().pageName,
+                    translateField().translates.product)
                 .text,
           )
         ]),
+        AutoRoute(
+          initial: true,
+          page: DashboardInitialRoute.page,
+          children: [
+            AutoRoute(
+              initial: true,
+              page: FloorRoute.page,
+              title: (context, data) => notifier
+                  .getPageModelByPageNameAndId(translateField().pageName,
+                      translateField().translates.product)
+                  .text,
+            ),
+            AutoRoute(
+              page: TableRoute.page,
+              title: (context, data) => notifier
+                  .getPageModelByPageNameAndId(translateField().pageName,
+                      translateField().translates.product)
+                  .text,
+            )
+          ],
+        ),
+
         AutoRoute(page: LoginRoute.page),
 
         /// routes go here
