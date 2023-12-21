@@ -17,8 +17,11 @@ List<TranslateModel<List<TranslatePageModel>>> Tr = [
     TranslatePageModel(id: "beverage", text: "İçecek"),
     TranslatePageModel(id: "food", text: "Yiyecek"),
     TranslatePageModel(id: "sweet", text: "Tatlı"),
+    TranslatePageModel(id: "my_orders", text: "Siparişlerim"),
   ]),
   TranslateModel(pageName: "router", translates: [
     TranslatePageModel(id: "home", text: "Anasayfa"),
+    TranslatePageModel(id: "product", text: "Ürünler"),
+    TranslatePageModel(id: "my_order", text: "Siparişlerim"),
   ]),
 ];

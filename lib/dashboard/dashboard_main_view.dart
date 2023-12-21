@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:fluter_example2/dashboard/mixin/dashboard_mixin.dart';
 import 'package:fluter_example2/navigation/app_router.dart';
+import 'package:fluter_example2/themes/theme_notifer.dart';
 import 'package:fluter_example2/translator/language_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,18 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
   @override
   Widget build(BuildContext context) {
     var notifier = context.watch<LanguageNotifier>();
+    var themeNotifier = context.watch<ThemeNotifer>();
     return AutoTabsRouter.tabBar(
-      routes: [HomeRoute(), HomeDetailRoute()],
+      routes: [
+        HomeRoute(),
+        ProductRoute(categoryId: 1),
+        ProductRoute(categoryId: 2),
+        ProductRoute(categoryId: 3),
+        MyOrderRoute()
+      ],
       builder: (context, child, controller) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-            backgroundColor: Colors.red.shade50,
             appBar: AppBar(
               title: Text(
                 context.topRoute.title.call(context),
@@ -27,23 +34,32 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
               actions: [
                 IconButton(
                     onPressed: () {
+                      themeNotifier.changeTheme();
+                    },
+                    icon: Icon(
+                      Icons.light_mode,
+                      color: Theme.of(context).iconTheme.color,
+                    )),
+                IconButton(
+                    onPressed: () {
                       context.router.navigate(LoginRoute());
                     },
                     icon: Icon(
                       Icons.login_outlined,
                       color: Theme.of(context).iconTheme.color,
-                    ))
+                    )),
               ],
             ),
             body: child,
             bottomNavigationBar: ConvexAppBar(
                 height: 70,
-                backgroundColor: Colors.white,
-                curveSize: 90,
-                shadowColor: Colors.black38,
-                activeColor: Colors.redAccent.shade400,
-                color: Colors.redAccent.shade400,
-                elevation: 10,
+                curveSize: 105,
+                color: Theme.of(context).iconTheme.color,
+                backgroundColor:
+                    Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                elevation: Theme.of(context).appBarTheme.elevation,
+                activeColor: Theme.of(context).iconTheme.color,
+                shadowColor: Theme.of(context).appBarTheme.shadowColor,
                 onTap: tabsRouter.setActiveIndex,
                 items: [
                   TabItem(
@@ -62,6 +78,10 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
                       icon: Icons.restaurant_menu_outlined,
                       title: notiferText(
                           notifier, translateField().translates.sweet)),
+                  TabItem(
+                      icon: Icons.shopping_cart,
+                      title: notiferText(
+                          notifier, translateField().translates.myOrders)),
                 ]));
       },
     );

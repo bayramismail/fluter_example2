@@ -15,16 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    DashboardInitialRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DashboardInitialView(),
+      );
+    },
     DashboardMainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const DashboardMainView(),
       );
     },
-    HomeDetailRoute.name: (routeData) {
+    FloorRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomeDetailView(),
+        child: const FloorView(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -39,7 +45,47 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginView(),
       );
     },
+    MyOrderRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MyOrderView(),
+      );
+    },
+    ProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProductView(
+          key: args.key,
+          categoryId: args.categoryId,
+        ),
+      );
+    },
+    TableRoute.name: (routeData) {
+      final args = routeData.argsAs<TableRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TableView(
+          key: args.key,
+          kat: args.kat,
+        ),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [DashboardInitialView]
+class DashboardInitialRoute extends PageRouteInfo<void> {
+  const DashboardInitialRoute({List<PageRouteInfo>? children})
+      : super(
+          DashboardInitialRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DashboardInitialRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -57,15 +103,15 @@ class DashboardMainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [HomeDetailView]
-class HomeDetailRoute extends PageRouteInfo<void> {
-  const HomeDetailRoute({List<PageRouteInfo>? children})
+/// [FloorView]
+class FloorRoute extends PageRouteInfo<void> {
+  const FloorRoute({List<PageRouteInfo>? children})
       : super(
-          HomeDetailRoute.name,
+          FloorRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeDetailRoute';
+  static const String name = 'FloorRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -96,4 +142,93 @@ class LoginRoute extends PageRouteInfo<void> {
   static const String name = 'LoginRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MyOrderView]
+class MyOrderRoute extends PageRouteInfo<void> {
+  const MyOrderRoute({List<PageRouteInfo>? children})
+      : super(
+          MyOrderRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MyOrderRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProductView]
+class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
+  ProductRoute({
+    Key? key,
+    required int categoryId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductRoute.name,
+          args: ProductRouteArgs(
+            key: key,
+            categoryId: categoryId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductRoute';
+
+  static const PageInfo<ProductRouteArgs> page =
+      PageInfo<ProductRouteArgs>(name);
+}
+
+class ProductRouteArgs {
+  const ProductRouteArgs({
+    this.key,
+    required this.categoryId,
+  });
+
+  final Key? key;
+
+  final int categoryId;
+
+  @override
+  String toString() {
+    return 'ProductRouteArgs{key: $key, categoryId: $categoryId}';
+  }
+}
+
+/// generated route for
+/// [TableView]
+class TableRoute extends PageRouteInfo<TableRouteArgs> {
+  TableRoute({
+    Key? key,
+    required String kat,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TableRoute.name,
+          args: TableRouteArgs(
+            key: key,
+            kat: kat,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TableRoute';
+
+  static const PageInfo<TableRouteArgs> page = PageInfo<TableRouteArgs>(name);
+}
+
+class TableRouteArgs {
+  const TableRouteArgs({
+    this.key,
+    required this.kat,
+  });
+
+  final Key? key;
+
+  final String kat;
+
+  @override
+  String toString() {
+    return 'TableRouteArgs{key: $key, kat: $kat}';
+  }
 }
