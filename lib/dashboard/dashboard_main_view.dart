@@ -58,7 +58,7 @@ class DashboardMainView extends StatelessWidget with DashboardMixin {
                 backgroundColor:
                     Theme.of(context).bottomNavigationBarTheme.backgroundColor,
                 elevation: Theme.of(context).appBarTheme.elevation,
-                activeColor: Theme.of(context).iconTheme.color,
+                activeColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
                 shadowColor: Theme.of(context).appBarTheme.shadowColor,
                 onTap: tabsRouter.setActiveIndex,
                 items: [

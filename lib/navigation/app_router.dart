@@ -34,17 +34,23 @@ final class AppRouter extends _$AppRouter with RouterMixin {
           ),
           AutoRoute(
             page: MyOrderRoute.page,
-            title: (context, data) => notifier
-                .getPageModelByPageNameAndId(translateField().pageName,
-                    translateField().translates.myOrder)
-                .text,
+            title: (context, data) {
+              final notifier = context.read<LanguageNotifier>();
+              return notifier
+                  .getPageModelByPageNameAndId(translateField().pageName,
+                  translateField().translates.myOrder)
+                  .text;
+            },
           ),
           AutoRoute(
             page: ProductRoute.page,
-            title: (context, data) => notifier
-                .getPageModelByPageNameAndId(translateField().pageName,
-                    translateField().translates.product)
-                .text,
+            title: (context, data) {
+              final notifier = context.read<LanguageNotifier>();
+              return notifier
+                  .getPageModelByPageNameAndId(translateField().pageName,
+                  translateField().translates.product)
+                  .text;
+            },
           )
         ]),
         AutoRoute(
@@ -54,17 +60,11 @@ final class AppRouter extends _$AppRouter with RouterMixin {
             AutoRoute(
               initial: true,
               page: FloorRoute.page,
-              title: (context, data) => notifier
-                  .getPageModelByPageNameAndId(translateField().pageName,
-                      translateField().translates.product)
-                  .text,
+
             ),
             AutoRoute(
               page: TableRoute.page,
-              title: (context, data) => notifier
-                  .getPageModelByPageNameAndId(translateField().pageName,
-                      translateField().translates.product)
-                  .text,
+
             )
           ],
         ),

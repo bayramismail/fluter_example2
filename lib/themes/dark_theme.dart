@@ -17,7 +17,7 @@ class DarkTheme {
       scaffoldBackgroundColor: Colors.white12,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Color.fromARGB(36, 35, 41, 100),
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.white,
       ),
     );
   }
